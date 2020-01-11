@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/profilebackground"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textViewUsername"
+        android:layout_width="137dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="316dp"
+        android:text="Username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewFullName"
+        android:layout_width="124dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="28dp"
+        android:text="User Full Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewUsername" />
+
+    <TextView
+        android:id="@+id/textViewPhoneNumber"
+        android:layout_width="152dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="28dp"
+        android:text="Contact Number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFullName" />
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="163dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="36dp"
+        android:text="Email Adress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNumber" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

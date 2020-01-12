@@ -16,6 +16,11 @@
     <string name="start">Start</string>
     <string name="reset">Reset</string>
     <string name="title_activity_timer">TimerActivity</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="mark_as_completed">Mark as completed</string>
+    <string name="any">any</string>
+    <string name="dot">dot</string>
 
 
 </resources>

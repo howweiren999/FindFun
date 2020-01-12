@@ -12,6 +12,11 @@ class HomePage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_homepage)
 
+        buttonToDoList.setOnClickListener{
+            val intent=Intent(this,DashboardActivity::class.java)
+            startActivity(intent)
+        }
+
         buttonUserProfile.setOnClickListener {
             val intent = Intent(this, Profile::class.java)
 

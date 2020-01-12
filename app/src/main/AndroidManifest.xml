@@ -40,6 +40,15 @@
                 <action android:name="start" />
             </intent-filter>
         </receiver>
+        <receiver
+            android:name=".MyAlarmReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="MyAlarmReceiver"/>
+
+            </intent-filter>
+        </receiver>
         <activity
             android:name=".SettingsActivity"
             android:parentActivityName=".TimerActivity"

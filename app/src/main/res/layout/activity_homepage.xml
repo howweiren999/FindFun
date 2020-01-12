@@ -29,6 +29,12 @@
             android:background="@drawable/userprofile" />
 
         <Button
+            android:id="@+id/buttonScheduleReminder"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:background="@drawable/testing" />
+
+        <Button
             android:id="@+id/buttonLogOut"
             android:layout_width="410dp"
             android:layout_height="200dp"

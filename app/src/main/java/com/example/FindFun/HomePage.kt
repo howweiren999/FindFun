@@ -30,6 +30,13 @@ class HomePage : AppCompatActivity() {
             startActivity(intent)
         }
 
+        buttonScheduleReminder.setOnClickListener {
+            val intent = Intent(this, Schedule::class.java)
+
+            //start the second activity. With no return value
+            startActivity(intent)
+        }
+
     }
 
 

@@ -32,7 +32,7 @@
             android:id="@+id/buttonScheduleReminder"
             android:layout_width="match_parent"
             android:layout_height="190dp"
-            android:background="@drawable/testing" />
+            android:background="@drawable/schedule" />
 
         <Button
             android:id="@+id/buttonLogOut"

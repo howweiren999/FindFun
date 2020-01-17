@@ -21,6 +21,7 @@
     <string name="mark_as_completed">Mark as completed</string>
     <string name="any">any</string>
     <string name="dot">dot</string>
+    <string name="url_scheduleList_create">scheduleList/create.php</string>
 
 
 </resources>

@@ -8,16 +8,21 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.DatePicker
 import android.widget.TimePicker
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import kotlinx.android.synthetic.main.activity_schedule.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 const val EXTRA_MESSAGE = "EXTRA_MESSAGE"
+
 
 class Schedule : AppCompatActivity() {
 
@@ -65,6 +70,10 @@ class Schedule : AppCompatActivity() {
         var mAlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val requestCode = 100
         var mPendingIntent: PendingIntent? = null
+        var token = getSharedPreferences("info", Context.MODE_PRIVATE)
+
+        val userName = token.getString("userName"," ")
+        val password = token.getString("password", " ")
 
 
         buttonSetAlarm.setOnClickListener{
@@ -90,7 +99,17 @@ class Schedule : AppCompatActivity() {
             mPendingIntent = PendingIntent.getBroadcast(this,requestCode,sentIntent,PendingIntent.FLAG_UPDATE_CURRENT)
             mAlarmManager.set(AlarmManager.RTC_WAKEUP, setTime.timeInMillis,mPendingIntent)
             Toast.makeText(this,"Schedule Reminder set up from ${textViewTime.text}:00 in ${textViewDate.text}"
-                ,Toast.LENGTH_SHORT).show()}
+                ,Toast.LENGTH_SHORT).show()
+
+            createSchduleList(
+                ScheduleList(
+                    textViewDate.text.toString()+"|"+textViewDate.text.toString(),
+                    editTextMsg.text.toString(),
+                    userName.toString(),
+                    setMyTimeFormat()+"|"+setMyDateFormat()
+                )
+            )
+        }
 
 
 
@@ -118,6 +137,44 @@ class Schedule : AppCompatActivity() {
             }
         }
         )
+    }
+
+    private fun createSchduleList(scheduleList: ScheduleList) {
+        val url = getString(R.string.url_server) + getString(R.string.url_scheduleList_create) +
+                "?date=" + scheduleList.date + "&message=" + scheduleList.message + "&userName=" + scheduleList.userName + "&createdDate=" + scheduleList.createdDate
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            Response.Listener { response ->
+                try {
+                    if (response != null) {
+                        val success: String = response.get("success").toString()
+
+                        if (success.equals("1")) {
+                            Toast.makeText(applicationContext, "Record saved", Toast.LENGTH_LONG).show()
+                            //Add record to user list
+                            //userList.add(user)
+                            //Explicit Intent
+                            val intent = Intent(this, HomePage::class.java)
+                            //start the second activity. With no return value
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(applicationContext,"Record not saved", Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    Log.d("Main", "Response: %s".format(e.message.toString()))
+                }
+            },
+            Response.ErrorListener { response ->
+                Log.d("Main", "Response: %s".format(response.message.toString()))
+            }
+        )
+        // Access the RequestQueue through your singleton class.
+        jsonObjectRequest.tag = SignUp.TAG
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+
     }
 }
 
